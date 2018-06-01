@@ -38,6 +38,12 @@ if { ! [regexp {PID:.(\S+)} $result -> pid] } {
 }
 action_syslog msg "BOOTSTRAP: my PID is: '$pid'"
 
+action_syslog msg "AUTOCONF: Getting SN"
+if { ! [regexp {SN:.(\S+)} $result -> sn] } {
+    puts "ERROR: Failed to find SN in '$result'"
+    exit 1
+}
+action_syslog msg "AUTOCONF: my SN is: '$sn'"
 
 # ID software version
 if { [catch {cli_exec $cli(fd) "show version"} result] } {
@@ -164,8 +170,8 @@ set MAC_ADDR [string toupper $m1$m2$m3]
 action_syslog msg "BOOTSTRAP: uplink MAC is: '$MAC_ADDR'"
 
 
-# Copy new config (mac_addr.cfg) to starup-config
-set conf $MAC_ADDR.cfg
+# Copy new config (serial_number.cfg) to starup-config
+set conf $sn.cfg
 action_syslog msg "BOOTSTRAP: Downloading the config for '$conf' at '$FTP$FTP_conf_path$conf'"
 
 if { [catch {cli_exec $cli(fd) "copy $FTP$FTP_conf_path$conf startup-config"} result] } {

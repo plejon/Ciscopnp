@@ -3,8 +3,7 @@
 ## This repo was made for ZTP Cisco devices using TCL and Event managers.
 
 - Upgrades the device to desired ios version
-- Finds the default DHCP interface MAC address
-- Uses the Mac address to download correct config file. (can easily be modified to use serial number from "show inventory" output)
+- Uses chassi serial number to download correct config file.
 - Some cisco devices use "golden.cfg" after the reset button I pressed while booting. This file simply sets basic config for the device so I can me remotely accessed.
 
 ## Steps
@@ -12,9 +11,9 @@
 - the config is applied and the even managers starts
 - It downloads "bootstrap.tcl" and "golden.cfg"
 - the TCL script is executed
-- Finds mac address, chassi serial number
+- Find chassi serial number
 - upgrades ios if needed
-- downloads the desired config as "mac_address".cfg
+- downloads the desired config as "serial_number".cfg
 - device reboots with new config file.
 
 
