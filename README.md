@@ -1,6 +1,6 @@
 # Ciscopnp
 
-## This repo was made for ZTP Cisco devices using TCL and Event managers.
+## This repo was made to ZTP Cisco devices using TCL and Event managers.
 
 - Upgrades the device to desired ios version
 - Uses chassi serial number to download correct config file.
